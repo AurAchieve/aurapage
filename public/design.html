@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Name - AurAchieve</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Gabarito:wght@400..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+        
+    <style>
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            text-align: center;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .top-bar span {
+            font-family: 'EB Garamond', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        #main {
+            max-width: 800px;
+            margin-top: 80px;
+            font-family: 'Gabarito', sans-serif;
+            text-align: center;
+            padding: 0px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #pfp {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            border: 2px solid #1a1a1a;
+            padding: 0px;
+        }
+        #main span {
+            border: 1px solid #75796c;
+            border-radius: 24px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+        }
+        #main p {
+            margin: 0px 0px 12px 0px;
+            padding: 0px;
+            color: rgb(55, 55, 55);
+        }
+        #main h2 {
+            margin: 12px 0px 4px 0px;
+        }
+        #sec2 {
+            font-family: 'Inter', sans-serif;
+        }
+        .memory {
+            font-family: 'Gabarito', sans-serif;
+            border: 1px solid #d0d0d0;
+            border-radius: 12px;
+            padding: 6px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .memory p {
+            color: rgb(55, 55, 55);
+            padding: 0px;
+            margin: 0px;
+        }
+        .memory img {
+            width: 32px;
+            height: 32px;
+        }
+        .memory h3 {
+            margin: 0px 0px 4px 0px;
+        }
+        .img-outline {
+            width: 48px;
+            height: 48px;
+            border: 2px;
+            border-radius: 25%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #abbe94;
+            color: white;
+            margin-right: 12px;
+        }
+    </style>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div class="top-bar">
+        <span onclick='window.location.href="https://aurachieve.com";'>AurAchieve</span>
+    </div>
+<div id="main">
+    <img id="pfp" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix">
+    <h2>NiceSapien</h2>
+    <p>Hey! I'm an extremely cool guy.</p>
+    <span><img src="aura.svg" alt="aura" style="margin: 0px 8px 0px 0px">Aura: 512</span>
+    </div>
+    <hr>
+    <div id="sec2">
+    <p style="font-size: 15px; color: rgb(55, 55, 55);">NiceSapien's Public Memories</p>
+    <div class="memory">
+        <div class="img-outline">
+        <img src="aura.svg">
+        </div>
+        <div>
+        <h3>We went to the Burj Khalifa</h3>
+        <p>It was an amazing experience!</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

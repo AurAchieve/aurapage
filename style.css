@@ -1,0 +1,490 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #fff;
+    color: #1a1a1a;
+    text-align: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.door {
+    position: fixed;
+    top: 0;
+    width: 50vw;
+    height: 100vh;
+    background-color: #111;
+    z-index: 1001;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.door.left {
+    left: 0;
+}
+
+.door.right {
+    right: 0;
+}
+
+.door.left.open {
+    transform: translateX(-100%);
+}
+
+.door.right.open {
+    transform: translateX(100%);
+}
+
+/* Initially hide content and fade it in */
+.top-bar, .content, .background-bubbles, .features-section, .screenshots-section, .more-features-section, .legal-container, footer {
+    opacity: 0;
+    transition: opacity 1s ease-in 1s;
+}
+
+body.loaded .top-bar,
+body.loaded .content,
+body.loaded .background-bubbles,
+body.loaded .features-section,
+body.loaded .screenshots-section,
+body.loaded .more-features-section,
+body.loaded .legal-container,
+body.loaded footer {
+    opacity: 1;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.top-bar span {
+    font-family: 'EB Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    padding: 20px;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 60px;
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    font-size: 24px;
+    color: #333;
+    margin-top: 10px;
+}
+
+.features-section, .screenshots-section, .more-features-section {
+    padding: 100px 20px;
+    z-index: 1;
+    position: relative;
+}
+
+.features-section h2, .screenshots-section h2, .more-features-section h2 {
+    font-size: 48px;
+    margin-bottom: 50px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card i {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    font-size: 16px;
+    color: #333;
+}
+
+.screenshots-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.screenshot {
+    width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.screenshot:hover {
+    transform: scale(1.05);
+}
+
+.more-features-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.more-features-list li {
+    font-size: 22px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px 30px;
+    border-radius: 15px;
+}
+
+.more-features-list i {
+    font-size: 28px;
+}
+
+.get-ready-section {
+    padding: 150px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    position: relative;
+    z-index: 1;
+}
+
+.get-ready-section h2 {
+    font-size: 56px;
+    margin-bottom: 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+footer {
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    position: relative;
+}
+
+footer p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #1a1a1a;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 28px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #fff;
+}
+
+.footer-links a {
+    color: #1a1a1a;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.background-bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.background-bubbles li {
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate-bubbles 25s linear infinite;
+    bottom: -150px;
+}
+
+.background-bubbles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+.background-bubbles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+.background-bubbles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+.background-bubbles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+.background-bubbles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+.background-bubbles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.background-bubbles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.background-bubbles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+.background-bubbles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+.background-bubbles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+
+@keyframes animate-bubbles {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #1a1a1a;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-size: 100%;
+  font-weight: 600;
+  height: 44px;
+  line-height: 1.15;
+  margin: 25px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-9:disabled {
+  cursor: default;
+  opacity: 0.7;
+}
+
+/* Legal/Privacy page styling */
+.legal-container {
+    max-width: 960px;
+    margin: 140px auto 100px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    text-align: left;
+}
+
+.legal-container h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.legal-highlights {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.highlight-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.25);
+    border: 2px solid rgba(26, 26, 26, 0.15); /* clearer outline */
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35) inset; /* glass edge */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    text-align: center;
+}
+
+.highlight-card i {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.highlight-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.legal-container .lede {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.legal-section {
+    margin: 30px 0 20px;
+}
+
+.legal-section h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.legal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+}
+
+.legal-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.legal-list i {
+    font-size: 22px;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.legal-note {
+    margin-top: 15px;
+    color: #333;
+}
+
+.legal-actions {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+}
+
+@media screen and (max-width: 768px) {
+    .legal-container {
+        margin: 120px 16px 60px;
+        padding: 24px;
+    }
+    .legal-highlights {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .legal-container h1 {
+        font-size: 36px;
+    }
+    .legal-section h2 {
+        font-size: 24px;
+    }
+    /* Make screenshots horizontally swipeable on mobile */
+    .screenshots-container {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 0 16px 10px;
+    }
+    .screenshots-container::-webkit-scrollbar { display: none; }
+    .screenshots-container { scrollbar-width: none; }
+    .screenshot {
+        width: 80vw;
+        max-width: 480px;
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+    }
+}
+
+.button-9:focus {
+  box-shadow: 0 0 0 4px rgba(50, 50, 93, 0.2);
+}
+
+.button-9:hover {
+    background-color: #333;
+}
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 45px;
+    }
+    p {
+        font-size: 18px;
+    }
+}
