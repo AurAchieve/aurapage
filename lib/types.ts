@@ -13,6 +13,7 @@ export interface AuraPage {
   username: string;
   theme: 'default' | 'hacker' | 'peace' | 'midnight' | 'inferno' | 'gold';
   enable: boolean;
+  bio?: string;
 }
 
 export interface PublicUser {
@@ -22,6 +23,7 @@ export interface PublicUser {
   auraLevel: string;
   theme: string;
   avatarUrl?: string;
+  bio?: string;
   stats: {
     streak: number;
     totalTasks: number;

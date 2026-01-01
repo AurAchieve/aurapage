@@ -39,7 +39,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, theme }) => 
         </div>
         
         <h2 className={`text-3xl font-bold m-0 mb-2 ${theme.onSurface} ${theme.font || 'font-gabarito'}`}>{user.name}</h2>
-        <p className={`m-0 mb-4 p-0 text-lg max-w-md ${theme.onSurfaceVariant} ${theme.font || 'font-gabarito'}`}>Hey! I'm an extremely cool guy.</p>
+        {user.bio && <p className={`m-0 mb-4 p-0 text-lg max-w-md ${theme.onSurfaceVariant} ${theme.font || 'font-gabarito'}`}>{user.bio}</p>}
         
         <div className={`border rounded-full px-4 py-2 flex items-center justify-center w-fit gap-2 shadow-sm hover:shadow-md transition-shadow ${theme.outline} ${theme.surfaceContainer}`}>
           <span className={`material-symbols-rounded select-none ${theme.primary}`}>auto_awesome</span>

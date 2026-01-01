@@ -108,6 +108,7 @@ export async function getUserByUsername(username: string): Promise<PublicUser | 
         bucketId: process.env.APPWRITE_BUCKET_ID!,
         fileId: `${profile.username}`
       }).toString(),
+      bio: auraPage.bio,
       stats: {
         streak: streak,
         totalTasks: totalTasks,
