@@ -11,38 +11,38 @@ interface StatsGridProps {
 export const StatsGrid: React.FC<StatsGridProps> = ({ user, theme }) => {
   const memories = [
     {
-      title: "We went to the Burj Khalifa",
-      description: "It was an amazing experience!",
+      title: "we went to antartica",
+      description: "penguins are gangsta",
       icon: MapPin,
       color: "bg-[#E63946]",
     },
     {
-      title: "Late Night Coding Session",
-      description: "Shipped the new feature at 3 AM.",
+      title: "did sm hacking and shi",
+      description: "im such a nerd",
       icon: Coffee,
       color: "bg-[#06D6A0]",
     },
     {
-      title: "Concert in the Park",
-      description: "The vibes were immaculate.",
+      title: "i got a wife",
+      description: "she loves the game",
       icon: Music,
       color: "bg-[#FFB703]",
     },
     {
-      title: "Photography Walk",
-      description: "Captured some stunning shots downtown.",
+      title: "pictured my city",
+      description: "the dawgs be everywhere",
       icon: Camera,
       color: "bg-[#0077B6]",
     },
     {
-      title: "Trip to Tokyo",
-      description: "Sushi, neon lights, and great friends.",
+      title: "trip to japan'o desu",
+      description: "shizuka-chan :blush:",
       icon: Plane,
       color: "bg-[#FB5607]",
     },
     {
-      title: "Aura Level Up!",
-      description: `Reached ${user.auraLevel} status!`,
+      title: "i met john cena",
+      description: `he's a cool guy`,
       icon: Sparkles,
       color: "bg-[#7209B7]",
     }
