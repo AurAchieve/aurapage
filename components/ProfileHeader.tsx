@@ -17,14 +17,19 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, theme }) => 
 
   return (
     <>
-      <div className={`fixed top-0 left-0 w-full py-4 text-center z-50 backdrop-blur-md border-b ${theme.surfaceContainer} ${theme.outline}`}>
-        <Link href="https://aurachieve.com" className={`font-garamond text-3xl font-bold hover:opacity-80 transition-opacity ${theme.onSurface}`}>
-          AurAchieve
-        </Link>
+      <div className={`fixed top-0 left-0 w-full px-4 py-3 z-50 backdrop-blur-sm ${theme.surface}`}>
+        <div className="w-full max-w-6xl mx-auto flex justify-between items-center">
+          <Link href="https://aurachieve.com" className={`font-garamond text-xl font-bold hover:opacity-70 transition-opacity ${theme.onSurface}`}>
+            AurAchieve
+          </Link>
+          <div className={`text-xs font-semibold px-3 py-1 rounded-full opacity-80 ${theme.primaryContainer} ${theme.onPrimaryContainer}`}>
+            AuraPage
+          </div>
+        </div>
       </div>
 
       <div className={`flex flex-col items-center justify-center text-center w-full lg:items-start lg:text-left lg:sticky lg:top-24 ${theme.font || 'font-gabarito'}`}>
-        <div className={`w-[120px] h-[120px] rounded-full border-2 p-0 overflow-hidden relative mb-4 shadow-lg flex items-center justify-center ${theme.outline} ${theme.surfaceContainer}`}>
+        <div className={`w-[140px] h-[140px] rounded-full border-2 p-0 overflow-hidden relative mb-6 flex items-center justify-center transition-transform hover:scale-105 ${theme.outline} ${theme.surfaceContainer}`} style={{ boxShadow: `0 8px 32px rgba(0,0,0,0.2)` }}>
           {user.avatarUrl && !imageError ? (
             <Image 
               src={user.avatarUrl} 
@@ -34,16 +39,17 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, theme }) => 
               onError={() => setImageError(true)}
             />
           ) : (
-            <span className={`text-5xl font-bold ${theme.onSurfaceVariant} ${theme.font || 'font-gabarito'}`}>{user.name.charAt(0).toUpperCase()}</span>
+            <span className={`text-6xl font-bold ${theme.onSurfaceVariant}`}>{user.name.charAt(0).toUpperCase()}</span>
           )}
         </div>
         
-        <h2 className={`text-3xl font-bold m-0 mb-2 ${theme.onSurface} ${theme.font || 'font-gabarito'}`}>{user.name}</h2>
-        {user.bio && <p className={`m-0 mb-4 p-0 text-lg max-w-md ${theme.onSurfaceVariant} ${theme.font || 'font-gabarito'}`}>{user.bio}</p>}
+        <h2 className={`text-4xl font-bold m-0 mb-2 ${theme.onSurface}`}>{user.name}</h2>
+        <p className={`text-sm tracking-wide uppercase opacity-70 m-0 mb-4 ${theme.onSurfaceVariant}`}>@{user.username}</p>
+        {user.bio && <p className={`m-0 mb-6 p-0 text-base max-w-md leading-relaxed ${theme.onSurfaceVariant}`}>{user.bio}</p>}
         
-        <div className={`border rounded-full px-4 py-2 flex items-center justify-center w-fit gap-2 shadow-sm hover:shadow-md transition-shadow ${theme.outline} ${theme.surfaceContainer}`}>
-          <span className={`material-symbols-rounded select-none ${theme.primary}`}>auto_awesome</span>
-          <span className={`font-semibold ${theme.onSurface} ${theme.font || 'font-gabarito'}`}>Aura: {user.aura.toLocaleString()}</span>
+        <div className={`px-5 py-3 flex items-center justify-center w-fit gap-2 font-semibold transition-all hover:scale-105 ${theme.primaryContainer} ${theme.onPrimaryContainer} ${theme.radius}`} style={{ boxShadow: `0 4px 16px rgba(0,0,0,0.15)` }}>
+          <span className={`material-symbols-rounded select-none text-lg`}>auto_awesome</span>
+          <span>{user.aura.toLocaleString()} Aura</span>
         </div>
       </div>
     </>

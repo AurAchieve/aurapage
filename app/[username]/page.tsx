@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${user.name} (@${user.username}) | AuraPages`,
+    title: `${user.name} (@${user.username}) | AuraPage`,
     description: `Check out ${user.name}'s stats on AuraPages. Level: ${user.auraLevel} | Aura: ${user.aura}`,
     openGraph: {
       title: `${user.name} on AuraPages`,

@@ -57,7 +57,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  title: "AurAchieve",
+  title: "Aura Pages by AurAchieve",
   description: "Flex your Aura and achievements in front of the world.",
 };
 

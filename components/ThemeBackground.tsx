@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { DefaultBackground } from './backgrounds/DefaultBackground';
 import { HackerBackground } from './backgrounds/HackerBackground';
 import { PeaceBackground } from './backgrounds/PeaceBackground';
 import { MidnightBackground } from './backgrounds/MidnightBackground';
@@ -23,7 +24,9 @@ export const ThemeBackground: React.FC<ThemeBackgroundProps> = ({ theme }) => {
       return <InfernoBackground />;
     case 'gold':
       return <GoldBackground />;
+    case 'default':
+      return <DefaultBackground />;
     default:
-      return null;
+      return <DefaultBackground />;
   }
 };

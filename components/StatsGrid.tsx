@@ -14,53 +14,56 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ user, theme }) => {
       title: "We went to the Burj Khalifa",
       description: "It was an amazing experience!",
       icon: MapPin,
-      color: "bg-[#FF6B6B]", // Vibrant Red/Pink
+      color: "bg-[#E63946]",
     },
     {
       title: "Late Night Coding Session",
       description: "Shipped the new feature at 3 AM.",
       icon: Coffee,
-      color: "bg-[#4ECDC4]", // Vibrant Turquoise
+      color: "bg-[#06D6A0]",
     },
     {
       title: "Concert in the Park",
       description: "The vibes were immaculate.",
       icon: Music,
-      color: "bg-[#FFE66D]", // Vibrant Yellow
+      color: "bg-[#FFB703]",
     },
     {
       title: "Photography Walk",
       description: "Captured some stunning shots downtown.",
       icon: Camera,
-      color: "bg-[#1A535C]", // Deep Teal
+      color: "bg-[#0077B6]",
     },
     {
       title: "Trip to Tokyo",
       description: "Sushi, neon lights, and great friends.",
       icon: Plane,
-      color: "bg-[#FF9F1C]", // Bright Orange
+      color: "bg-[#FB5607]",
     },
     {
       title: "Aura Level Up!",
       description: `Reached ${user.auraLevel} status!`,
       icon: Sparkles,
-      color: "bg-[#9B5DE5]", // Vibrant Purple
+      color: "bg-[#7209B7]",
     }
   ];
 
   return (
     <div className={`${theme.font || 'font-inter'} w-full`}>
-      <p className={`text-lg font-semibold mb-6 ${theme.onSurface}`}>{user.name}'s Public Memories</p>
+      <div className="mb-10">
+        <h3 className={`text-2xl font-bold mb-2 ${theme.onSurface}`}>{user.name}'s Public Memories</h3>
+        <div className={`h-1 w-16 ${theme.primaryContainer}`}></div>
+      </div>
       
       <div className="grid grid-cols-1 gap-4">
         {memories.map((memory, index) => (
-          <div key={index} className={`border p-3 flex items-center hover:shadow-md transition-all duration-200 ${theme.outline} ${theme.radius} ${theme.surfaceContainer} ${theme.font || 'font-gabarito'}`}>
-            <div className={`w-14 h-14 flex items-center justify-center text-center ${memory.color} text-white mr-4 shrink-0 shadow-sm ${theme.radius}`}>
-              <memory.icon size={24} strokeWidth={2.5} />
+          <div key={index} className={`group p-4 flex items-start gap-4 transition-all duration-300 hover:scale-102 ${theme.surfaceContainer} ${theme.radius}`} style={{ boxShadow: `0 2px 8px rgba(0,0,0,0.1)` }}>
+            <div className={`flex-shrink-0 w-14 h-14 flex items-center justify-center text-white rounded-lg transition-transform group-hover:scale-110 ${memory.color}`} style={{ boxShadow: `0 4px 12px rgba(0,0,0,0.2)` }}>
+              <memory.icon size={24} strokeWidth={2} />
             </div>
-            <div>
-              <h3 className={`m-0 mb-1 text-base font-bold ${theme.onSurface}`}>{memory.title}</h3>
-              <p className={`m-0 p-0 text-sm ${theme.onSurfaceVariant}`}>{memory.description}</p>
+            <div className="flex-1 min-w-0">
+              <h3 className={`m-0 mb-1 text-lg font-bold leading-tight ${theme.onSurface}`}>{memory.title}</h3>
+              <p className={`m-0 p-0 text-sm leading-relaxed ${theme.onSurfaceVariant}`}>{memory.description}</p>
             </div>
           </div>
         ))}
