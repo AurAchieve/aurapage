@@ -123,3 +123,34 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Memory content styling */
+.prose p {
+  margin-bottom: 1em;
+  color: inherit;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: inherit;
+}
+
+.prose em {
+  font-style: italic;
+  color: inherit;
+}
+
+.prose ul, .prose ol {
+  margin-left: 1.5em;
+  margin-bottom: 1em;
+  color: inherit;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+  color: inherit;
+}
+
+.prose * {
+  color: inherit;
+}

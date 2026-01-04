@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: `Level: ${user.auraLevel} | Aura: ${user.aura}`,
       images: [
         {
-          url: `/api/og?username=${username}`, // We'll implement this or use the file convention
+          url: `/api/og?username=${username}`,
           width: 1200,
           height: 630,
         },
@@ -54,12 +54,10 @@ export default async function UserProfilePage({ params }: PageProps) {
       <div className="w-full max-w-6xl px-4 lg:px-8 py-8 lg:py-12 z-10">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
           
-          {/* Left Column: Profile Info (Sticky on Desktop) */}
           <div className="w-full lg:w-[350px] shrink-0">
             <ProfileHeader user={user} theme={theme} />
           </div>
 
-          {/* Right Column: Memories / Content */}
           <div className="w-full flex-1">
             <div className={`lg:hidden w-full border-t my-6 ${theme.outline}`} />
             <StatsGrid user={user} theme={theme} />

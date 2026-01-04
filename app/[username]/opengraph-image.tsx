@@ -37,7 +37,6 @@ export default async function Image({ params }: { params: { username: string } }
     );
   }
 
-  // Simple theme mapping for OG image colors
   const colors: Record<string, { bg: string; text: string; accent: string }> = {
     default: { bg: '#f8fafc', text: '#0f172a', accent: '#2563eb' },
     hacker: { bg: '#000000', text: '#22c55e', accent: '#4ade80' },
@@ -73,7 +72,7 @@ export default async function Image({ params }: { params: { username: string } }
             border: `4px solid ${theme.accent}`,
             borderRadius: '20px',
             padding: '40px 80px',
-            background: theme.bg, // Ensure contrast
+            background: theme.bg,
           }}
         >
           <div style={{ fontSize: 64, fontWeight: 'bold', marginBottom: 20 }}>
