@@ -60,7 +60,7 @@ export async function fetchPublicMemories(userId: string, needsDecryption: boole
       mood: memory.mood,
       timestamp: memory.timestamp || memory.$createdAt,
       location: memory.location,
-      tag: memory.tag,
+      tag: (needsDecryption && memory.tag) ? decryptField(memory.tag) : memory.tag,
       tagColor: memory.tagColor,
       files: memory.files,
       ...Object.keys(memory).reduce((acc, key) => {
@@ -83,5 +83,5 @@ export function shouldFetchMemories(e2e: boolean | null | undefined): boolean {
 }
 
 export function needsDecryption(e2e: boolean | null | undefined): boolean {
-  return e2e === false;
+  return e2e === false || e2e === true;
 }

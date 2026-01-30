@@ -78,6 +78,8 @@
   --font-quicksand: var(--font-quicksand);
   --font-space-grotesk: var(--font-space-grotesk);
   --font-cinzel: var(--font-cinzel);
+  --font-orbitron: var(--font-orbitron);
+  --font-montserrat: var(--font-montserrat);
 }
 
 @media (prefers-color-scheme: dark) {

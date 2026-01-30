@@ -44,6 +44,8 @@ export default async function Image({ params }: { params: { username: string } }
     midnight: { bg: '#020617', text: '#e0e7ff', accent: '#a78bfa' },
     inferno: { bg: '#431407', text: '#ffedd5', accent: '#ef4444' },
     gold: { bg: '#171717', text: '#fef9c3', accent: '#eab308' },
+    galactic: { bg: '#000000', text: '#FFE81F', accent: '#FFE81F' },
+    early: { bg: '#0a0a0f', text: '#e0f2fe', accent: '#38bdf8' },
   };
 
   const theme = colors[user.theme] || colors.default;

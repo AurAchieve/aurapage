@@ -1,5 +1,5 @@
 import { getUserByUsername } from '@/lib/data';
-import { getTheme } from '@/lib/themes';
+import { getTheme, getContrastColor } from '@/lib/themes';
 import { notFound } from 'next/navigation';
 import { ThemeBackground } from '@/components/ThemeBackground';
 import Link from 'next/link';
@@ -97,7 +97,7 @@ export default async function MemoryPage({ params }: PageProps) {
   }
 
   return (
-    <main className={`min-h-screen flex flex-col items-center ${theme.surface} ${theme.font || ''} relative`}>
+    <main className={`min-h-screen flex flex-col items-center ${theme.surface} ${theme.onSurface} ${theme.font || ''} relative`}>
       <ThemeBackground theme={user.theme} />
       
       <div className={`fixed top-0 left-0 w-full px-4 py-3 z-50 backdrop-blur-sm ${theme.surface}`}>
@@ -145,10 +145,10 @@ export default async function MemoryPage({ params }: PageProps) {
             )}
             {memory.tag && (
               <div 
-                className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1`}
+                className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 bg-gray-200`}
                 style={{ 
                   backgroundColor: memory.tagColor || '#9B5DE5',
-                  color: '#ffffff'
+                  color: getContrastColor(memory.tagColor || '#9B5DE5')
                 }}
               >
                 <Tag size={12} />

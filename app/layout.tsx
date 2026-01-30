@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { EB_Garamond, Gabarito, Inter, Montserrat, Lobster, Playfair_Display, VT323, Quicksand, Space_Grotesk, Cinzel } from "next/font/google";
+import { EB_Garamond, Gabarito, Inter, Montserrat, Lobster, Playfair_Display, VT323, Quicksand, Space_Grotesk, Cinzel, Orbitron } from "next/font/google";
 import "./globals.css";
 
 const ebGaramond = EB_Garamond({
@@ -10,6 +10,11 @@ const ebGaramond = EB_Garamond({
 const gabarito = Gabarito({
   subsets: ["latin"],
   variable: "--font-gabarito",
+});
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  variable: "--font-orbitron",
 });
 
 const inter = Inter({
@@ -72,7 +77,7 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
       <body
-        className={`${ebGaramond.variable} ${gabarito.variable} ${inter.variable} ${montserrat.variable} ${lobster.variable} ${playfair.variable} ${vt323.variable} ${quicksand.variable} ${spaceGrotesk.variable} ${cinzel.variable} antialiased`}
+        className={`${ebGaramond.variable} ${gabarito.variable} ${inter.variable} ${montserrat.variable} ${lobster.variable} ${playfair.variable} ${vt323.variable} ${quicksand.variable} ${spaceGrotesk.variable} ${cinzel.variable} ${orbitron.variable} antialiased`}
       >
         {children}
       </body>

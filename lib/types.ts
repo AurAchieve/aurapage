@@ -12,7 +12,7 @@ export interface UserProfile {
 export interface AuraPage {
   $id: string;
   username: string;
-  theme: 'default' | 'hacker' | 'peace' | 'midnight' | 'inferno' | 'gold';
+  theme: 'default' | 'hacker' | 'peace' | 'midnight' | 'inferno' | 'gold' | 'galactic' | 'early';
   enable: boolean;
   bio?: string;
 }

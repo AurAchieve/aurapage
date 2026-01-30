@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { PublicUser, Memory } from '@/lib/types';
-import { Theme } from '@/lib/themes';
+import { Theme, getContrastColor } from '@/lib/themes';
 import { Sparkles, MapPin, Music, Coffee, Camera, Plane, Heart, Star, Smile, Cloud } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { deltaToPlainText, isQuillDelta } from '@/lib/quill-utils';
@@ -112,10 +112,10 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ user, theme }) => {
                   )}
                   {memory.tag && (
                     <div 
-                      className="px-2 py-0.5 rounded-full text-xs font-semibold"
+                      className="px-2 py-0.5 rounded-full text-xs font-semibold bg-gray-200"
                       style={{ 
                         backgroundColor: memory.tagColor || '#9B5DE5',
-                        color: '#ffffff'
+                        color: getContrastColor(memory.tagColor || '#9B5DE5')
                       }}
                     >
                       {memory.tag}

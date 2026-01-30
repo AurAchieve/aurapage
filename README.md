@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[AuraPages](https://aurapage.me) - a simple social media-like page to flex your aura to the world. Show the best of your memories and achievements in your style using AuraPages. Choose your favorite page theme from a long list. All open source and written in nextjs. Requires SSR for rendering on a server.
+
+Powered by [AurAchieve](https://aurachieve.com), a open source self-improvement app.
 
 ## Getting Started
 
@@ -15,7 +17,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
