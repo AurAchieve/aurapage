@@ -57,7 +57,7 @@ export async function fetchPublicMemories(userId: string, needsDecryption: boole
       name: needsDecryption ? decryptField(memory.name) : memory.name,
       description: needsDecryption ? decryptField(memory.description) : memory.description,
       public: memory.public,
-      mood: memory.mood,
+      mood: (needsDecryption && memory.mood) ? decryptField(memory.mood) : memory.mood,
       timestamp: memory.timestamp || memory.$createdAt,
       location: memory.location,
       tag: (needsDecryption && memory.tag) ? decryptField(memory.tag) : memory.tag,

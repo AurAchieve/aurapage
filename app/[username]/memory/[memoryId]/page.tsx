@@ -157,7 +157,7 @@ export default async function MemoryPage({ params }: PageProps) {
             )}
             {memory.mood && (
               <div className={`px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${theme.primaryContainer} ${theme.onPrimaryContainer}`}>
-                <span className="text-base">{memory.mood}</span>
+                <span className="text-sm">Mood: {memory.mood}</span>
               </div>
             )}
           </div>

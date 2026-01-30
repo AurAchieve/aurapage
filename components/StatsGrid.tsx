@@ -102,7 +102,7 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ user, theme }) => {
                 </p>
                 <div className="flex items-center gap-2 mt-2">
                   {memory.mood && (
-                    <span className="text-base">{memory.mood}</span>
+                    <span className={`text-xs ${theme.onSurfaceVariant}`}>Mood: {memory.mood}</span>
                   )}
                   {memory.location && (
                     <div className={`flex items-center gap-1 text-xs ${theme.onSurfaceVariant}`}>
