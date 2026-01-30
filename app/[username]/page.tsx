@@ -21,17 +21,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const title = `${user.name} (@${user.username}) - AuraPage`;
+  const description = `${user.name} has ${user.aura.toLocaleString()} aura. See memories and achievements from ${user.name} on AuraPages.`;
+
   return {
-    title: `${user.name} (@${user.username}) | AuraPage`,
-    description: `Check out ${user.name}'s stats on AuraPages. Level: ${user.auraLevel} | Aura: ${user.aura}`,
+    title,
+    description,
     openGraph: {
-      title: `${user.name} on AuraPages`,
-      description: `Level: ${user.auraLevel} | Aura: ${user.aura}`,
+      title,
+      description,
       images: [
         {
-          url: `/api/og?username=${username}`,
+          url: `/${username}/opengraph-image`,
           width: 1200,
           height: 630,
+          alt: title,
         },
       ],
     },

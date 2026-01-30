@@ -56,9 +56,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const title = `${user.name} (@${user.username})'s memory - AurAchieve`;
+  const description = `${user.name} shared a memory with you - go check it out!`;
+
   return {
-    title: `${memory.name} - ${user.name}'s Memory | AuraPage`,
-    description: `View ${user.name}'s memory on AuraPages`,
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+    },
   };
 }
 

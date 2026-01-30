@@ -37,72 +37,115 @@ export default async function Image({ params }: { params: { username: string } }
     );
   }
 
-  const colors: Record<string, { bg: string; text: string; accent: string }> = {
-    default: { bg: '#f8fafc', text: '#0f172a', accent: '#2563eb' },
-    hacker: { bg: '#000000', text: '#22c55e', accent: '#4ade80' },
-    peace: { bg: '#f0f9ff', text: '#334155', accent: '#0ea5e9' },
-    midnight: { bg: '#020617', text: '#e0e7ff', accent: '#a78bfa' },
-    inferno: { bg: '#431407', text: '#ffedd5', accent: '#ef4444' },
-    gold: { bg: '#171717', text: '#fef9c3', accent: '#eab308' },
-    galactic: { bg: '#000000', text: '#FFE81F', accent: '#FFE81F' },
-    early: { bg: '#0a0a0f', text: '#e0f2fe', accent: '#38bdf8' },
+  const colors: Record<string, { bg: string; text: string; accent: string; panel: string }> = {
+    default: { bg: '#0b1224', text: '#e2e8f0', accent: '#38bdf8', panel: '#11182c' },
+    hacker: { bg: '#050a07', text: '#d1fae5', accent: '#22c55e', panel: '#0a1610' },
+    peace: { bg: '#0f172a', text: '#e2e8f0', accent: '#0ea5e9', panel: '#131c32' },
+    midnight: { bg: '#080b14', text: '#e5e7eb', accent: '#a78bfa', panel: '#0f1320' },
+    inferno: { bg: '#1b0a06', text: '#ffe4e6', accent: '#ef4444', panel: '#230e0a' },
+    gold: { bg: '#0f0f0f', text: '#fef3c7', accent: '#eab308', panel: '#171717' },
+    galactic: { bg: '#020617', text: '#e0f2fe', accent: '#22d3ee', panel: '#0a1026' },
+    early: { bg: '#05060b', text: '#e0f2fe', accent: '#38bdf8', panel: '#0b0e1a' },
   };
 
   const theme = colors[user.theme] || colors.default;
+  const title = `${user.name} (@${user.username}) - AuraPage`;
+  const description = `${user.name} has ${user.aura.toLocaleString()} aura. See memories and achievements from ${user.name} on AuraPages.`;
+  const initial = (user.name?.[0] || user.username?.[0] || '?').toUpperCase();
+
+  let avatarDataUrl: string | null = null;
+  if (user.avatarUrl) {
+    try {
+      const res = await fetch(user.avatarUrl, { cache: 'no-store' });
+      if (res.ok) {
+        const contentType = res.headers.get('content-type') || 'image/png';
+        const buffer = Buffer.from(await res.arrayBuffer());
+        const base64 = buffer.toString('base64');
+        avatarDataUrl = `data:${contentType};base64,${base64}`;
+      }
+    } catch (error) {
+      console.error('Failed to fetch avatar for OG image', error);
+    }
+  }
 
   return new ImageResponse(
     (
       <div
         style={{
-          background: theme.bg,
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'space-between',
+          background: theme.bg,
           color: theme.text,
-          fontFamily: 'sans-serif',
+          padding: '72px 96px',
+          boxSizing: 'border-box',
+          fontFamily: 'Inter, Arial, sans-serif',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: `4px solid ${theme.accent}`,
-            borderRadius: '20px',
-            padding: '40px 80px',
-            background: theme.bg,
-          }}
-        >
-          <div style={{ fontSize: 64, fontWeight: 'bold', marginBottom: 20 }}>
-            {user.name}
-          </div>
-          <div style={{ fontSize: 32, opacity: 0.8, marginBottom: 40 }}>
-            @{user.username}
-          </div>
-          
-          <div style={{ display: 'flex', gap: '40px' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ fontSize: 48, fontWeight: 'bold', color: theme.accent }}>
-                {user.aura.toLocaleString()}
-              </div>
-              <div style={{ fontSize: 24, opacity: 0.7 }}>Aura</div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: '65%' }}>
+          <div style={{ fontSize: 56, fontWeight: 800, lineHeight: 1.1 }}>{title}</div>
+          <div style={{ fontSize: 28, opacity: 0.88, lineHeight: 1.4 }}>{description}</div>
+          <div style={{ display: 'flex', gap: 16 }}>
+            <div
+              style={{
+                background: theme.panel,
+                border: `1px solid ${theme.accent}40`,
+                borderRadius: 14,
+                padding: '12px 18px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                fontSize: 22,
+                fontWeight: 700,
+              }}
+            >
+              <span style={{ color: theme.accent }}>Aura</span>
+              <span>{user.aura.toLocaleString()}</span>
             </div>
-            
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ fontSize: 48, fontWeight: 'bold', color: theme.accent }}>
-                {user.auraLevel}
-              </div>
-              <div style={{ fontSize: 24, opacity: 0.7 }}>Level</div>
+            <div
+              style={{
+                background: theme.panel,
+                border: `1px solid ${theme.accent}40`,
+                borderRadius: 14,
+                padding: '12px 18px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 8,
+                fontSize: 22,
+                fontWeight: 700,
+              }}
+            >
+              <span style={{ color: theme.accent }}>Level</span>
+              <span>{user.auraLevel}</span>
             </div>
           </div>
         </div>
-        
-        <div style={{ position: 'absolute', bottom: 40, fontSize: 24, opacity: 0.5 }}>
-          aurachieve.com
+
+        <div
+          style={{
+            width: 220,
+            height: 220,
+            borderRadius: '50%',
+            border: `10px solid ${theme.accent}`,
+            boxShadow: '0 18px 48px rgba(0,0,0,0.35)',
+            overflow: 'hidden',
+            background: theme.panel,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {avatarDataUrl ? (
+            <img
+              src={avatarDataUrl}
+              alt={`${user.name} avatar`}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          ) : (
+            <div style={{ fontSize: 96, fontWeight: 800, color: theme.accent }}>{initial}</div>
+          )}
         </div>
       </div>
     ),
