@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 import { ThemeBackground } from '@/components/ThemeBackground';
 import Link from 'next/link';
 import { ArrowLeft, MapPin, Calendar, Tag } from 'lucide-react';
-import { deltaToHtml, isQuillDelta } from '@/lib/quill-utils';
+import { deltaToHtml, isQuillDelta, deltaToPlainText } from '@/lib/quill-utils';
 import { Metadata } from 'next';
 import { MemoryFiles, MemoryFile } from '@/components/MemoryFiles';
 import { Client as AppwriteClient, Storage } from 'appwrite';
@@ -56,8 +56,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const title = `${user.name} (@${user.username})'s memory - AurAchieve`;
-  const description = `${user.name} shared a memory with you - go check it out!`;
+  const memoryName = isQuillDelta(memory.name) ? deltaToPlainText(memory.name) : memory.name;
+  const date = new Date(memory.timestamp || memory.$createdAt).toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+
+  const title = `${user.name}'s Memory - ${memoryName}`;
+  const description = `${user.name} (@${user.username}) shared a memory from ${date}! Check it out on AuraPages.`;
 
   return {
     title,

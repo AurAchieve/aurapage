@@ -5,14 +5,15 @@ export const runtime = 'nodejs';
 
 export const alt = 'AuraPages Profile';
 export const size = {
-  width: 1200,
-  height: 630,
+  width: 500,
+  height: 500,
 };
 
 export const contentType = 'image/png';
 
-export default async function Image({ params }: { params: { username: string } }) {
-  const user = await getUserByUsername(params.username);
+export default async function Image({ params }: { params: Promise<{ username: string }> }) {
+  const { username } = await params;
+  const user = await getUserByUsername(username);
 
   if (!user) {
     return new ImageResponse(
@@ -49,22 +50,37 @@ export default async function Image({ params }: { params: { username: string } }
   };
 
   const theme = colors[user.theme] || colors.default;
-  const title = `${user.name} (@${user.username}) - AuraPage`;
-  const description = `${user.name} has ${user.aura.toLocaleString()} aura. See memories and achievements from ${user.name} on AuraPages.`;
   const initial = (user.name?.[0] || user.username?.[0] || '?').toUpperCase();
 
-  let avatarDataUrl: string | null = null;
-  if (user.avatarUrl) {
+  let avatarUrl = user.avatarUrl;
+  
+  // Transform to preview URL for PNG output to ensure compatibility with OG generation
+  if (avatarUrl && avatarUrl.includes('/view')) {
     try {
-      const res = await fetch(user.avatarUrl, { cache: 'no-store' });
-      if (res.ok) {
-        const contentType = res.headers.get('content-type') || 'image/png';
-        const buffer = Buffer.from(await res.arrayBuffer());
-        const base64 = buffer.toString('base64');
-        avatarDataUrl = `data:${contentType};base64,${base64}`;
+        const urlObj = new URL(avatarUrl);
+        // Change path from /view to /preview
+        if (urlObj.pathname.endsWith('/view')) {
+           urlObj.pathname = urlObj.pathname.replace(/\/view$/, '/preview');
+        }
+        urlObj.searchParams.set('output', 'png');
+        urlObj.searchParams.set('width', '500');
+        urlObj.searchParams.set('height', '500');
+        urlObj.searchParams.set('quality', '80');
+        avatarUrl = urlObj.toString();
+    } catch (e) {
+        console.error('Error transforming avatar URL:', e);
+    }
+  }
+
+  let hasAvatar = false;
+  if (avatarUrl) {
+    try {
+      const res = await fetch(avatarUrl, { method: 'HEAD', cache: 'no-store' });
+      if (res.ok && res.headers.get('content-type')?.startsWith('image/')) {
+        hasAvatar = true;
       }
     } catch (error) {
-      console.error('Failed to fetch avatar for OG image', error);
+      console.error('Failed to check avatar for OG image', error);
     }
   }
 
@@ -76,75 +92,29 @@ export default async function Image({ params }: { params: { username: string } }
           height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           background: theme.bg,
           color: theme.text,
-          padding: '72px 96px',
-          boxSizing: 'border-box',
-          fontFamily: 'Inter, Arial, sans-serif',
         }}
       >
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: '65%' }}>
-          <div style={{ fontSize: 56, fontWeight: 800, lineHeight: 1.1 }}>{title}</div>
-          <div style={{ fontSize: 28, opacity: 0.88, lineHeight: 1.4 }}>{description}</div>
-          <div style={{ display: 'flex', gap: 16 }}>
-            <div
-              style={{
-                background: theme.panel,
-                border: `1px solid ${theme.accent}40`,
-                borderRadius: 14,
-                padding: '12px 18px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                fontSize: 22,
-                fontWeight: 700,
-              }}
-            >
-              <span style={{ color: theme.accent }}>Aura</span>
-              <span>{user.aura.toLocaleString()}</span>
-            </div>
-            <div
-              style={{
-                background: theme.panel,
-                border: `1px solid ${theme.accent}40`,
-                borderRadius: 14,
-                padding: '12px 18px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 8,
-                fontSize: 22,
-                fontWeight: 700,
-              }}
-            >
-              <span style={{ color: theme.accent }}>Level</span>
-              <span>{user.auraLevel}</span>
-            </div>
-          </div>
-        </div>
-
         <div
           style={{
-            width: 220,
-            height: 220,
-            borderRadius: '50%',
-            border: `10px solid ${theme.accent}`,
-            boxShadow: '0 18px 48px rgba(0,0,0,0.35)',
+            width: 500,
+            height: 500,
             overflow: 'hidden',
-            background: theme.panel,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}
         >
-          {avatarDataUrl ? (
+          {hasAvatar ? (
             <img
-              src={avatarDataUrl}
+              src={avatarUrl}
               alt={`${user.name} avatar`}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           ) : (
-            <div style={{ fontSize: 96, fontWeight: 800, color: theme.accent }}>{initial}</div>
+            <div style={{ fontSize: 200, fontWeight: 800, color: theme.accent }}>{initial}</div>
           )}
         </div>
       </div>
