@@ -74,9 +74,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-      </head>
       <body
         className={`${ebGaramond.variable} ${gabarito.variable} ${inter.variable} ${montserrat.variable} ${lobster.variable} ${playfair.variable} ${vt323.variable} ${quicksand.variable} ${spaceGrotesk.variable} ${cinzel.variable} ${orbitron.variable} antialiased`}
       >

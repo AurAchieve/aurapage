@@ -48,7 +48,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ user, theme }) => 
         {user.bio && <p className={`m-0 mb-6 p-0 text-base max-w-md leading-relaxed ${theme.onSurfaceVariant}`}>{user.bio}</p>}
         
         <div className={`px-5 py-3 flex items-center justify-center w-fit gap-2 font-semibold transition-all hover:scale-105 ${theme.primaryContainer} ${theme.onPrimaryContainer} ${theme.radius}`} style={{ boxShadow: `0 4px 16px rgba(0,0,0,0.15)` }}>
-          <span className={`material-symbols-rounded select-none text-lg`}>auto_awesome</span>
+          <Sparkles className="h-5 w-5" aria-hidden="true" />
           <span>{user.aura.toLocaleString()} Aura</span>
         </div>
       </div>
