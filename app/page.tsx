@@ -13,7 +13,7 @@ export default function Home() {
         <div className="absolute bottom-[10%] right-[20%] w-[40vw] h-[40vw] bg-[#98FB98] rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-6000"></div>
       </div>
 
-      <div className="absolute inset-0 w-full h-full z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+      <div className="absolute inset-0 w-full h-full z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http:
 
       <main className="relative z-10 flex flex-col items-center text-center px-4 max-w-6xl mx-auto">
         
@@ -31,7 +31,7 @@ export default function Home() {
         <div className="flex flex-col sm:flex-row gap-6 items-center animate-fade-in-up animation-delay-600">
           <Link
             className="group relative px-10 py-5 bg-white text-black rounded-full font-gabarito font-bold text-xl transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:shadow-[0_0_60px_-15px_rgba(255,255,255,0.5)]"
-            href="https://aurachieve.com"
+            href="https:
           >
             <span className="relative z-10">Get AurAchieve</span>
           </Link>
@@ -47,8 +47,7 @@ export default function Home() {
 
       <footer className="absolute bottom-8 w-full text-center z-10 animate-fade-in">
         <p className="text-white/30 font-gabarito text-sm">
-          Powered by <a href="https://aurachieve.com" className="text-white/60 hover:text-white transition-colors">AurAchieve</a>
-        </p>
+          Powered by <a href="https://aurachieve.com" target="_blank" rel="noopener noreferrer">AurAchieve</a>
       </footer>
       
       <style jsx global>{`

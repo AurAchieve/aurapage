@@ -53,12 +53,11 @@ export default async function Image({ params }: { params: Promise<{ username: st
   const initial = (user.name?.[0] || user.username?.[0] || '?').toUpperCase();
 
   let avatarUrl = user.avatarUrl;
-  
-  // Transform to preview URL for PNG output to ensure compatibility with OG generation
+
   if (avatarUrl && avatarUrl.includes('/view')) {
     try {
         const urlObj = new URL(avatarUrl);
-        // Change path from /view to /preview
+        
         if (urlObj.pathname.endsWith('/view')) {
            urlObj.pathname = urlObj.pathname.replace(/\/view$/, '/preview');
         }

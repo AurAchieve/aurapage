@@ -148,11 +148,79 @@ body {
   color: inherit;
 }
 
+.prose ul {
+  list-style-type: disc;
+  padding-left: 1.25em;
+  list-style-position: outside;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.25em;
+  list-style-position: outside;
+}
+
 .prose li {
+  display: list-item;
   margin-bottom: 0.5em;
   color: inherit;
 }
 
+.prose li::marker {
+  color: currentColor;
+}
+
+.prose li[data-list='bullet'] {
+  list-style-type: disc;
+}
+
+.prose li[data-list='ordered'] {
+  list-style-type: decimal;
+}
+
+.prose li[data-list='bullet']::before {
+  content: '• ';
+  color: currentColor;
+  margin-right: 0.25em;
+}
+
+.prose ol[data-list='ordered'] {
+  counter-reset: memory-ordered;
+}
+
+.prose li[data-list='ordered']::before {
+  counter-increment: memory-ordered;
+  content: counter(memory-ordered) '. ';
+  color: currentColor;
+  margin-right: 0.25em;
+}
+
 .prose * {
   color: inherit;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 280ms;
+}
+
+::view-transition-old(memory-title),
+::view-transition-new(memory-title) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.memory-title-hero {
+  animation: memoryTitleEnter 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes memoryTitleEnter {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

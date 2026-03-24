@@ -3,7 +3,7 @@ import React from 'react';
 export const GalacticBackground = () => {
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none bg-black">
-      {/* Dense Starfield */}
+      {}
       <div className="absolute inset-0 opacity-100" 
            style={{ 
              backgroundImage: `
@@ -29,7 +29,7 @@ export const GalacticBackground = () => {
            }}>
       </div>
       
-      {/* Additional denser layer for depth */}
+      {}
       <div className="absolute inset-0 opacity-50" 
            style={{ 
              backgroundImage: `

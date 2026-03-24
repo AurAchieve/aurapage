@@ -4,7 +4,7 @@ export const EarlyBackground = () => {
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none bg-[#020202] perspective-[1000px]">
       
-      {/* 3D Floating "Thank You" Text Effect using CSS Shadows/Gradients to simulate structure */}
+      {}
       <div className="absolute inset-0 flex items-center justify-center opacity-[0.03]">
         <div className="text-[20vw] font-black tracking-tighter leading-none text-center select-none transform rotate-x-12 rotate-y-12 animate-float-3d">
           THANK<br/>YOU
@@ -13,7 +13,7 @@ export const EarlyBackground = () => {
 
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0284c7]/5 to-transparent"></div>
 
-      {/* Floating particles/confetti to signify celebration/carrying */}
+      {}
       <div className="absolute inset-0 overflow-hidden">
         {Array.from({ length: 20 }).map((_, i) => (
             <div 

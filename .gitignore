@@ -42,3 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 MEMORIES_IMPLEMENTATION.md
+
+# development utilities
+scripts/remove-comments.js

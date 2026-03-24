@@ -36,6 +36,16 @@ function decryptField(packed: string): string {
   }
 }
 
+function decryptFilesField(files?: string | string[]): string | string[] | undefined {
+  if (!files) return files;
+
+  if (Array.isArray(files)) {
+    return files.map(file => decryptField(String(file)));
+  }
+
+  return decryptField(String(files));
+}
+
 export async function fetchPublicMemories(userId: string, needsDecryption: boolean = true): Promise<Memory[]> {
   try {
     const { databases } = createAdminClient();
@@ -61,8 +71,9 @@ export async function fetchPublicMemories(userId: string, needsDecryption: boole
       timestamp: memory.timestamp || memory.$createdAt,
       location: memory.location,
       tag: (needsDecryption && memory.tag) ? decryptField(memory.tag) : memory.tag,
-      tagColor: memory.tagColor,
-      files: memory.files,
+      tagColor: (needsDecryption && memory.tagColor) ? decryptField(String(memory.tagColor)) : memory.tagColor,
+      tagColorEncrypted: memory.tagColor,
+      files: needsDecryption ? decryptFilesField(memory.files) : memory.files,
       ...Object.keys(memory).reduce((acc, key) => {
         if (!['$id', 'name', 'description', 'public', 'mood', 'timestamp', 'location', 'tag', 'tagColor', 'files', '$createdAt', '$updatedAt', '$permissions', '$collectionId', '$databaseId'].includes(key)) {
           acc[key] = memory[key];

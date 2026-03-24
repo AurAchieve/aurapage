@@ -83,7 +83,7 @@ export default async function UserProfilePage({ params }: PageProps) {
         </div>
         
         <div className={`mt-12 text-center text-sm ${theme.onSurfaceVariant}`}>
-          <p>Get your AuraPage with <a href="https://aurachieve.com" className={`${theme.primary} hover:underline`}>AurAchieve</a>.</p>
+          <p>Get your AuraPage with <a href="https://aurachieve.com" target="_blank" rel="noopener noreferrer">AurAchieve</a></p>
       </div>
       </div>
     </main>

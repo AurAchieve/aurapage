@@ -9,6 +9,7 @@ import { InfernoBackground } from './backgrounds/InfernoBackground';
 import { GoldBackground } from './backgrounds/GoldBackground';
 import { GalacticBackground } from './backgrounds/GalacticBackground';
 import { EarlyBackground } from './backgrounds/EarlyBackground';
+import { SpiderBackground } from './backgrounds/SpiderBackground';
 
 interface ThemeBackgroundProps {
   theme: string;
@@ -30,6 +31,8 @@ export const ThemeBackground: React.FC<ThemeBackgroundProps> = ({ theme }) => {
       return <GalacticBackground />;
     case 'early':
       return <EarlyBackground />;
+    case 'spider':
+      return <SpiderBackground />;
     case 'default':
       return <DefaultBackground />;
     default:

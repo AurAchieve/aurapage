@@ -9,10 +9,31 @@ export interface UserProfile {
   e2e?: boolean | null;
 }
 
+export interface Theme {
+  surface: string;
+  surfaceElevated: string;
+  readingSurface: string;
+  readingOnSurface: string;
+  onSurface: string;
+  onSurfaceVariant: string;
+  surfaceContainer: string;
+  primaryContainer: string;
+  onPrimaryContainer: string;
+  onPrimary?: string;
+  primary: string;
+  divider: string;
+  accent: string;
+  fabBackground: string;
+  fabIcon: string;
+  outline: string;
+  radius: string;
+  font?: string;
+}
+
 export interface AuraPage {
   $id: string;
   username: string;
-  theme: 'default' | 'hacker' | 'peace' | 'midnight' | 'inferno' | 'gold' | 'galactic' | 'early';
+  theme: 'default' | 'hacker' | 'peace' | 'midnight' | 'inferno' | 'gold' | 'galactic' | 'early' | 'spider';
   enable: boolean;
   bio?: string;
 }
