@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { PublicUser, Memory } from '@/lib/types';
 import { Theme, getContrastColor, normalizeTagColor } from '@/lib/themes';
 import { useRouter } from 'next/navigation';
-import { deltaToPlainText, isQuillDelta } from '@/lib/quill-utils';
+import { deltaToPlainText, isQuillDelta, parseDescriptionWithSong } from '@/lib/quill-utils';
 
 interface StatsGridProps {
   user: PublicUser;
@@ -62,9 +62,11 @@ export const StatsGrid: React.FC<StatsGridProps> = ({ user, theme }) => {
             ? deltaToPlainText(memory.name, 60) 
             : (memory.name.length > 60 ? memory.name.substring(0, 60) + '...' : memory.name);
           
-          const descPreview = isQuillDelta(memory.description)
-            ? deltaToPlainText(memory.description, 100)
-            : (memory.description.length > 100 ? memory.description.substring(0, 100) + '...' : memory.description);
+          const { cleanDescription } = parseDescriptionWithSong(memory.description);
+
+          const descPreview = isQuillDelta(cleanDescription)
+            ? deltaToPlainText(cleanDescription, 100)
+            : (cleanDescription.length > 100 ? cleanDescription.substring(0, 100) + '...' : cleanDescription);
           
           return (
             <div 

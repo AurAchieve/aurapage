@@ -1,5 +1,63 @@
 import { QuillDeltaToHtmlConverter } from 'quill-delta-to-html';
 
+export interface ListenedToSong {
+  trackName: string;
+  artistName: string;
+  artworkUrl100: string;
+  previewUrl: string;
+  trackViewUrl: string;
+}
+
+export interface ParsedDescriptionWithSong {
+  cleanDescription: string;
+  song: ListenedToSong | null;
+}
+
+const LISTENED_TO_PREFIX = '%%LISTENED_TO:';
+const LISTENED_TO_SUFFIX = '%%';
+
+export function parseDescriptionWithSong(description: string): ParsedDescriptionWithSong {
+  const originalDescription = String(description ?? '');
+  const listenedToIndex = originalDescription.lastIndexOf(LISTENED_TO_PREFIX);
+
+  if (listenedToIndex === -1) {
+    return {
+      cleanDescription: originalDescription,
+      song: null,
+    };
+  }
+
+  const suffixIndex = originalDescription.lastIndexOf(LISTENED_TO_SUFFIX);
+
+  if (suffixIndex === -1 || suffixIndex < listenedToIndex + LISTENED_TO_PREFIX.length) {
+    return {
+      cleanDescription: originalDescription,
+      song: null,
+    };
+  }
+
+  const songJson = originalDescription
+    .slice(listenedToIndex + LISTENED_TO_PREFIX.length, suffixIndex)
+    .trim();
+
+  const cleanDescription = originalDescription
+    .slice(0, listenedToIndex)
+    .replace(/(?:\r?\n)+$/, '');
+
+  try {
+    return {
+      cleanDescription,
+      song: JSON.parse(songJson) as ListenedToSong,
+    };
+  } catch (error) {
+    console.error('Error parsing listened-to soundtrack metadata:', error);
+    return {
+      cleanDescription,
+      song: null,
+    };
+  }
+}
+
 export function deltaToHtml(deltaString: string): string {
   try {
     const delta = JSON.parse(deltaString);

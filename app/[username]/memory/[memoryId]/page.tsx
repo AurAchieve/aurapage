@@ -3,8 +3,8 @@ import { getTheme, getContrastColor, normalizeTagColor } from '@/lib/themes';
 import { notFound } from 'next/navigation';
 import { ThemeBackground } from '@/components/ThemeBackground';
 import Link from 'next/link';
-import { ArrowLeft, MapPin, Calendar, Tag } from 'lucide-react';
-import { deltaToHtml, isQuillDelta, deltaToPlainText } from '@/lib/quill-utils';
+import { ArrowLeft, MapPin, Calendar, Tag, Download, ExternalLink, Music2 } from 'lucide-react';
+import { deltaToHtml, isQuillDelta, deltaToPlainText, parseDescriptionWithSong } from '@/lib/quill-utils';
 import { Metadata } from 'next';
 import { MemoryFiles, MemoryFile } from '@/components/MemoryFiles';
 import { Client as AppwriteClient, Storage } from 'appwrite';
@@ -257,7 +257,8 @@ export default async function MemoryPage({ params }: PageProps) {
   const theme = getTheme(user.theme);
 
   const nameHtml = isQuillDelta(memory.name) ? deltaToHtml(memory.name) : memory.name;
-  const descriptionHtml = isQuillDelta(memory.description) ? deltaToHtml(memory.description) : memory.description;
+  const { cleanDescription, song } = parseDescriptionWithSong(memory.description);
+  const descriptionHtml = isQuillDelta(cleanDescription) ? deltaToHtml(cleanDescription) : cleanDescription;
   const tagBackgroundColor = normalizeTagColor(memory.tagColor) || theme.accent;
   const tagTextColor = getContrastColor(tagBackgroundColor);
   const tagBorderColor = tagTextColor === '#000000' ? 'rgba(0,0,0,0.22)' : 'rgba(255,255,255,0.28)';
@@ -367,6 +368,68 @@ export default async function MemoryPage({ params }: PageProps) {
               dangerouslySetInnerHTML={{ __html: descriptionHtml }}
             />
           </section>
+
+          {song && (
+            <section className="mt-10 pt-8 border-t border-white/10" aria-label="Listened to soundtrack">
+              <div className="mb-4 flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] opacity-70">
+                <Music2 size={16} />
+                <span>Been listening to</span>
+              </div>
+
+              <div className={`overflow-hidden border ${theme.outline} ${theme.surfaceContainer} ${theme.radius}`}>
+                <div className="grid gap-0 md:grid-cols-[160px_1fr]">
+                  <div className="relative min-h-[160px] bg-black/10">
+                    <img
+                      src={song.artworkUrl100}
+                      alt={`${song.trackName} by ${song.artistName}`}
+                      className="h-full w-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
+
+                  <div className="p-5 md:p-6 flex flex-col justify-between gap-5">
+                    <div>
+                      <p className={`text-sm font-semibold uppercase tracking-[0.18em] ${theme.onSurfaceVariant}`}>
+                        Apple Music soundtrack
+                      </p>
+                      <h2 className={`mt-2 text-2xl font-bold ${theme.onSurface}`}>
+                        {song.trackName}
+                      </h2>
+                      <p className={`mt-1 text-base ${theme.onSurfaceVariant}`}>
+                        {song.artistName}
+                      </p>
+                    </div>
+
+                    <div className="flex flex-wrap gap-3">
+                      <a
+                        href="https://aurachieve.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold ${theme.primaryContainer} ${theme.onPrimaryContainer} hover:opacity-90 transition-opacity`}
+                      >
+                        <Download size={16} />
+                        <span>Download AurAchieve to listen</span>
+                      </a>
+
+                      <a
+                        href={song.trackViewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold border ${theme.outline} ${theme.onSurface} hover:opacity-80 transition-opacity`}
+                      >
+                        <ExternalLink size={16} />
+                        <span>Open on Apple Music</span>
+                      </a>
+                    </div>
+
+                    <p className={`text-sm ${theme.onSurfaceVariant}`}>
+                      Listening is available in the AurAchieve app. This page only shows the track details.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
         </div>
 
         <footer className={`w-full border-t ${theme.divider}`}>
