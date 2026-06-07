@@ -26,6 +26,18 @@ function calculateAuraLevel(aura: number): string {
   return 'Ascended';
 }
 
+function buildAvatarUrl(username: string, version?: string): string {
+  const avatarUrl = storage.getFileView(
+    process.env.APPWRITE_BUCKET_ID!,
+    `${username}`
+  ).toString();
+
+  if (!version) return avatarUrl;
+
+  const separator = avatarUrl.includes('?') ? '&' : '?';
+  return `${avatarUrl}${separator}v=${encodeURIComponent(version)}`;
+}
+
 export async function getUserByUsername(username: string): Promise<PublicUser | null> {
   try {
     const auraPageResponse = await databases.listDocuments<AuraPage & Models.Document>(
@@ -101,10 +113,7 @@ export async function getUserByUsername(username: string): Promise<PublicUser | 
       aura: profile.aura || 0,
       auraLevel: calculateAuraLevel(profile.aura || 0),
       theme: auraPage.theme || 'default',
-      avatarUrl: storage.getFileView(
-        process.env.APPWRITE_BUCKET_ID!,
-        `${profile.username}`
-      ).toString(),
+      avatarUrl: buildAvatarUrl(profile.username, profile.$updatedAt),
       bio: auraPage.bio,
       stats: {
         streak: streak,

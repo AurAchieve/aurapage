@@ -7,6 +7,9 @@ import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
 import { clsx } from 'clsx';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface PageProps {
   params: Promise<{ username: string }>;
 }

@@ -2,6 +2,8 @@ import { ImageResponse } from 'next/og';
 import { getUserByUsername } from '@/lib/data';
 
 export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 export const alt = 'AuraPages Profile';
 export const size = {
